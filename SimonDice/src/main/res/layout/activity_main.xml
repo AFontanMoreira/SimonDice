@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginEnd="4dp"
+        android:background="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contador" />
+
+    <Button
+        android:id="@+id/verde"
+        android:layout_width="125dp"
+        android:layout_height="123dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="156dp"
+        android:text="Verde"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/azul"
+        android:layout_width="125dp"
+        android:layout_height="123dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="56dp"
+        android:text="azul"
+        app:layout_constraintStart_toEndOf="@+id/amarillo"
+        app:layout_constraintTop_toBottomOf="@+id/rojo" />
+
+    <Button
+        android:id="@+id/amarillo"
+        android:layout_width="125dp"
+        android:layout_height="123dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="56dp"
+        android:text="amarillo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verde" />
+
+    <Button
+        android:id="@+id/rojo"
+        android:layout_width="125dp"
+        android:layout_height="123dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="156dp"
+        android:text="Rojo"
+        app:layout_constraintStart_toEndOf="@+id/verde"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/jugar"
+        android:layout_width="151dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="104dp"
+        android:text="Jugar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.873" />
+
+    <TextView
+        android:id="@+id/ronda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="Ronda"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/contador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:text="00"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ronda" />
+</androidx.constraintlayout.widget.ConstraintLayout>
