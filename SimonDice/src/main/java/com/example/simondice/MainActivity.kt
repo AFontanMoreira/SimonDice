@@ -28,6 +28,23 @@ class MainActivity : AppCompatActivity() {
 
         var jugando=false
 
+        //muestra el array 1 con toasts
+
+        fun mensageUsuario(array:ArrayList<Int>) {
+
+            for (color in array) {
+                when (color) {
+                    1 ->
+                        Toast.makeText(applicationContext, "Rojo", Toast.LENGTH_SHORT).show()
+                    2 ->
+                        Toast.makeText(applicationContext, "Azul", Toast.LENGTH_SHORT).show()
+                    3 ->
+                        Toast.makeText(applicationContext,"Amarillo",Toast.LENGTH_SHORT).show()
+                    else ->
+                        Toast.makeText(applicationContext, "Verde", Toast.LENGTH_SHORT).show()
+                }
+            }
 
     }
+}
 }
