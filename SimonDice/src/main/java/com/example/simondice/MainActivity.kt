@@ -3,6 +3,7 @@ package com.example.simondice
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import kotlin.random.Random
 
@@ -25,13 +26,18 @@ class MainActivity : AppCompatActivity() {
         val verde: Button = findViewById(R.id.verde)
         val inicio: Button = findViewById(R.id.jugar)
         val siguienteRonda: Button = findViewById(R.id.siguiente)
+        val contador : TextView = findViewById(R.id.contador)
+        var ronda = 1
 
         var jugando = false
+
+
 
 
         //instrucciones para el boton de inicio (cambiar "jugando" a true, borrar los arrays que pudieran estar molestando con cosas dentro, y añadir el primer color al array 1)
 
         inicio.setOnClickListener() {
+            contador.setText(ronda.toString())
             Toast.makeText(applicationContext, "Inicio", Toast.LENGTH_SHORT).show()
             array1.clear()
             array2.clear()
@@ -44,9 +50,13 @@ class MainActivity : AppCompatActivity() {
         siguienteRonda.setOnClickListener(){
             if (jugando){
                 if (array1==array2){
+                    ronda++
                     array2.clear()
                     array1.add(Random.nextInt(4)+1)
                     mensageUsuario(array1)
+                    contador.setText(ronda.toString())
+
+
                 }else{
                     Toast.makeText(applicationContext, "fallaste", Toast.LENGTH_SHORT).show()
                     jugando=false
@@ -55,6 +65,25 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"No le has dado a iniciar",Toast.LENGTH_SHORT).show()
             }
         }
+        //funcion para añadir los colores en el segundo array
+        fun anhadir(array: ArrayList<Int>, color:Int){
+            array.add(color)
+        }
+        //asignamos valores a los colores -> rojo=1; azul=2; amarillo=3; verde=4
+        rojo.setOnClickListener(){
+            anhadir(array2,1)
+        }
+        azul.setOnClickListener(){
+            anhadir(array2,2)
+        }
+        amarillo.setOnClickListener(){
+            anhadir(array2,3)
+        }
+        verde.setOnClickListener(){
+            anhadir(array2,4)
+        }
+
+
 
 
         //muestra el array 1 con toasts
