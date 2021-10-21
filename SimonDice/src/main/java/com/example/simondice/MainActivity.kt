@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         var jugando = false
 
+
         //instrucciones para el boton de inicio (cambiar "jugando" a true, borrar los arrays que pudieran estar molestando con cosas dentro, y añadir el primer color al array 1)
 
         inicio.setOnClickListener() {
@@ -38,6 +39,23 @@ class MainActivity : AppCompatActivity() {
             array1.add(Random.nextInt(4) + 1)
             mensageUsuario(array1)
         }
+        //instrucciones para el boton siguiente ronda(comprueba si el usuario esta jugando y que la secuencia de colores introducida por el jugador sea la adecuada, borra el array2, y da otro numero al array1)
+
+        siguienteRonda.setOnClickListener(){
+            if (jugando){
+                if (array1==array2){
+                    array2.clear()
+                    array1.add(Random.nextInt(4)+1)
+                    mensageUsuario(array1)
+                }else{
+                    Toast.makeText(applicationContext, "fallaste", Toast.LENGTH_SHORT).show()
+                    jugando=false
+                }
+            }else{
+                Toast.makeText(applicationContext,"No le has dado a iniciar",Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
         //muestra el array 1 con toasts
 
