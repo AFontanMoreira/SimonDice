@@ -33,9 +33,9 @@ class MainActivity : AppCompatActivity() {
         val amarillo: Button = findViewById(R.id.amarillo)
         val verde: Button = findViewById(R.id.verde)
         val inicio: Button = findViewById(R.id.jugar)
-        val siguienteRonda: Button = findViewById(R.id.siguiente)
         val contador: TextView = findViewById(R.id.contador)
         var ronda = 1
+        var nPusaciones: Int = 0
 
         var jugando = false
 
@@ -49,36 +49,52 @@ class MainActivity : AppCompatActivity() {
                         delay(1000)
                         rojo.setBackgroundColor(Color.parseColor("#ff0000"))
                         delay(500)
-                        Log.d("color","Destello rojo")
+                        Log.d("color", "Destello rojo")
                     }
                     2 -> {
                         azul.setBackgroundColor(Color.parseColor("#047c71"))
                         delay(1000)
                         azul.setBackgroundColor(Color.parseColor("#00ffe8"))
                         delay(500)
-                        Log.d("color","Destello azul")
+                        Log.d("color", "Destello azul")
                     }
-                    3 ->{
+                    3 -> {
                         amarillo.setBackgroundColor(Color.parseColor("#a9ac04"))
                         delay(1000)
                         amarillo.setBackgroundColor(Color.parseColor("#ffec00"))
                         delay(500)
-                        Log.d("color","Destello amarillo")
+                        Log.d("color", "Destello amarillo")
                     }
-                    else ->{
+                    else -> {
                         verde.setBackgroundColor(Color.parseColor("#075e00"))
                         delay(1000)
                         verde.setBackgroundColor(Color.parseColor("#13ff00"))
                         delay(500)
-                        Log.d("color","Destello verde")
+                        Log.d("color", "Destello verde")
                     }
                 }
             }
         }
-        fun colores(array: ArrayList<Int>) {
-            val job = CoroutineScope(Dispatchers.IO).launch {
 
+        fun colores(array: ArrayList<Int>) {
+            val job = CoroutineScope(Dispatchers.Main).launch {
                 mostarColores(array)
+            }
+        }
+
+        //Comprobamos ambas secuencias
+        suspend fun comprobacion() {
+            if (array1 == array2) {
+                ronda++
+                array2.clear()
+                array1.add(Random.nextInt(4) + 1)
+                contador.setText(ronda.toString())
+                delay(500)
+                colores(array1)
+                nPusaciones = 0
+            } else {
+                Toast.makeText(applicationContext, "fallaste", Toast.LENGTH_SHORT).show()
+                jugando = false
             }
         }
         //instrucciones para el boton de inicio (cambiar "jugando" a true, borrar los arrays que pudieran estar molestando con cosas dentro, y añadir el primer color al array 1)
@@ -92,50 +108,38 @@ class MainActivity : AppCompatActivity() {
             jugando = true
             array1.add(Random.nextInt(4) + 1)
             colores(array1)
+            nPusaciones = 0
 
-
-        }
-        //instrucciones para el boton siguiente ronda(comprueba si el usuario esta jugando y que la secuencia de colores introducida por el jugador sea la adecuada, borra el array2, y da otro numero al array1)
-
-        siguienteRonda.setOnClickListener() {
-            if (jugando) {
-                if (array1 == array2) {
-                    ronda++
-                    array2.clear()
-                    array1.add(Random.nextInt(4) + 1)
-                    contador.setText(ronda.toString())
-                    colores(array1)
-
-
-                } else {
-                    Toast.makeText(applicationContext, "fallaste", Toast.LENGTH_SHORT).show()
-                    jugando = false
-                }
-            } else {
-                Toast.makeText(applicationContext, "No le has dado a iniciar", Toast.LENGTH_SHORT)
-                    .show()
-            }
         }
         //funcion para añadir los colores en el segundo array
         fun anhadir(array: ArrayList<Int>, color: Int) {
             array.add(color)
         }
+
+        fun resultado(color: Int) {
+            anhadir(array2, color)
+            nPusaciones++
+            if (ronda == nPusaciones) {
+                val job = CoroutineScope(Dispatchers.Main).launch {
+                    comprobacion()
+                }
+                Log.d("color", "Funciona comprobacion")
+
+            }
+        }
         //asignamos valores a los colores -> rojo=1; azul=2; amarillo=3; verde=4
         rojo.setOnClickListener() {
-            anhadir(array2, 1)
+            resultado(1)
         }
         azul.setOnClickListener() {
-            anhadir(array2, 2)
+            resultado(2)
         }
         amarillo.setOnClickListener() {
-            anhadir(array2, 3)
+            resultado(3)
         }
         verde.setOnClickListener() {
-            anhadir(array2, 4)
+            resultado(4)
         }
-
-
-
 
 
     }
