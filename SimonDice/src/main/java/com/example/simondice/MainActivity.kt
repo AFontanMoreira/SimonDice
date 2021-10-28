@@ -86,12 +86,16 @@ class MainActivity : AppCompatActivity() {
         suspend fun comprobacion() {
             if (array1 == array2) {
                 ronda++
+                if (ronda%5 == 0){
+                    mensageUsuario()
+                }
                 array2.clear()
                 array1.add(Random.nextInt(4) + 1)
                 contador.setText(ronda.toString())
                 delay(500)
                 colores(array1)
                 nPusaciones = 0
+
             } else {
                 Toast.makeText(applicationContext, "fallaste", Toast.LENGTH_SHORT).show()
                 jugando = false
@@ -145,20 +149,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     //muestra el array 1 con toasts
-    private fun mensageUsuario(array: ArrayList<Int>) {
-
-        for (color in array) {
-            when (color) {
+    private fun mensageUsuario() {
+            when (Random.nextInt(4) + 1) {
                 1 ->
-                    Toast.makeText(applicationContext, "Rojo", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Bien hecho", Toast.LENGTH_SHORT).show()
                 2 ->
-                    Toast.makeText(applicationContext, "Azul", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Buena", Toast.LENGTH_SHORT).show()
                 3 ->
-                    Toast.makeText(applicationContext, "Amarillo", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Estas en racha", Toast.LENGTH_SHORT).show()
                 else ->
-                    Toast.makeText(applicationContext, "Verde", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Sigue asi", Toast.LENGTH_SHORT).show()
             }
-        }
+
     }
 }
 
