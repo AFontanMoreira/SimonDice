@@ -8,6 +8,7 @@
 
 
     <View
+        android:id="@+id/view"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_marginEnd="4dp"
@@ -19,8 +20,8 @@
         android:id="@+id/verde"
         android:layout_width="125dp"
         android:layout_height="123dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="156dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="180dp"
         app:backgroundTint="@color/green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,44 +30,42 @@
         android:id="@+id/amarillo"
         android:layout_width="125dp"
         android:layout_height="123dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="136dp"
         app:backgroundTint="@color/yellow"
-        app:layout_constraintStart_toStartOf="@+id/verde"
-        app:layout_constraintTop_toBottomOf="@+id/verde" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/verde" />
 
     <Button
         android:id="@+id/rojo"
         android:layout_width="125dp"
         android:layout_height="123dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="156dp"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="180dp"
         app:backgroundTint="@color/red"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/verde"
+        app:layout_constraintStart_toStartOf="@+id/verde"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/azul"
         android:layout_width="125dp"
         android:layout_height="123dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="136dp"
         app:backgroundTint="@color/blue"
-        app:layout_constraintEnd_toEndOf="@+id/rojo"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/amarillo"
-        app:layout_constraintTop_toBottomOf="@+id/rojo" />
+        app:layout_constraintStart_toStartOf="@+id/amarillo"
+        app:layout_constraintTop_toTopOf="@+id/rojo" />
 
     <Button
         android:id="@+id/jugar"
         android:layout_width="151dp"
         android:layout_height="65dp"
-        android:layout_marginStart="96dp"
         android:text="Jugar"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.873" />
+        app:layout_constraintVertical_bias="0.903" />
 
     <TextView
         android:id="@+id/ronda"

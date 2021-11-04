@@ -1,11 +1,11 @@
 package com.example.simondice
 
 import android.graphics.Color
+import android.media.AsyncPlayer
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
-import android.view.KeyEvent
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -17,9 +17,11 @@ import kotlinx.coroutines.*
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var mediaPlayer: MediaPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         //declaracion de botones, arrays y el boolean de jugando
 
@@ -45,31 +47,43 @@ class MainActivity : AppCompatActivity() {
             for (color in array) {
                 when (color) {
                     1 -> {
+                        mediaPlayer = MediaPlayer.create(this, R.raw.sonido1)
                         rojo.setBackgroundColor(Color.parseColor("#710000"))
-                        delay(1000)
-                        rojo.setBackgroundColor(Color.parseColor("#ff0000"))
+                        mediaPlayer.start()
                         delay(500)
+                        mediaPlayer.stop()
+                        rojo.setBackgroundColor(Color.parseColor("#ff0000"))
+                        delay(250)
                         Log.d("color", "Destello rojo")
                     }
                     2 -> {
+                        mediaPlayer = MediaPlayer.create(this, R.raw.sonido2)
                         azul.setBackgroundColor(Color.parseColor("#047c71"))
-                        delay(1000)
-                        azul.setBackgroundColor(Color.parseColor("#00ffe8"))
+                        mediaPlayer.start()
                         delay(500)
+                        mediaPlayer.stop()
+                        azul.setBackgroundColor(Color.parseColor("#00ffe8"))
+                        delay(250)
                         Log.d("color", "Destello azul")
                     }
                     3 -> {
+                        mediaPlayer = MediaPlayer.create(this, R.raw.sonido3)
                         amarillo.setBackgroundColor(Color.parseColor("#a9ac04"))
-                        delay(1000)
-                        amarillo.setBackgroundColor(Color.parseColor("#ffec00"))
+                        mediaPlayer.start()
                         delay(500)
+                        mediaPlayer.stop()
+                        amarillo.setBackgroundColor(Color.parseColor("#ffec00"))
+                        delay(250)
                         Log.d("color", "Destello amarillo")
                     }
                     else -> {
+                        mediaPlayer = MediaPlayer.create(this, R.raw.sonido4)
                         verde.setBackgroundColor(Color.parseColor("#075e00"))
-                        delay(1000)
-                        verde.setBackgroundColor(Color.parseColor("#13ff00"))
+                        mediaPlayer.start()
                         delay(500)
+                        mediaPlayer.stop()
+                        verde.setBackgroundColor(Color.parseColor("#13ff00"))
+                        delay(250)
                         Log.d("color", "Destello verde")
                     }
                 }
@@ -134,15 +148,27 @@ class MainActivity : AppCompatActivity() {
         //asignamos valores a los colores -> rojo=1; azul=2; amarillo=3; verde=4
         rojo.setOnClickListener() {
             resultado(1)
+            mediaPlayer = MediaPlayer.create(this, R.raw.sonido1)
+            mediaPlayer.start()
+            mediaPlayer.stop()
         }
         azul.setOnClickListener() {
             resultado(2)
+            mediaPlayer = MediaPlayer.create(this, R.raw.sonido1)
+            mediaPlayer.start()
+            mediaPlayer.stop()
         }
         amarillo.setOnClickListener() {
             resultado(3)
+            mediaPlayer = MediaPlayer.create(this, R.raw.sonido1)
+            mediaPlayer.start()
+            mediaPlayer.stop()
         }
         verde.setOnClickListener() {
             resultado(4)
+            mediaPlayer = MediaPlayer.create(this, R.raw.sonido1)
+            mediaPlayer.start()
+            mediaPlayer.stop()
         }
 
 
