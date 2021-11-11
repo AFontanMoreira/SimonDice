@@ -40,6 +40,37 @@ class MainActivity : AppCompatActivity() {
         var nPusaciones: Int = 0
 
         var jugando = false
+        suspend fun reproducir(sonido:Int){
+            when (sonido) {
+                1 -> {
+                    mediaPlayer = MediaPlayer.create(this, R.raw.sonido1)
+                    delay(200)
+                    mediaPlayer.start()
+                    delay(250)
+                    mediaPlayer.stop()
+                }
+                2 ->{
+                    mediaPlayer = MediaPlayer.create(this, R.raw.sonido2)
+                    mediaPlayer.start()
+                    delay(250)
+                    mediaPlayer.stop()
+                }
+                3 ->{
+                    mediaPlayer = MediaPlayer.create(this, R.raw.sonido3)
+                    delay(200)
+                    mediaPlayer.start()
+                    delay(250)
+                    mediaPlayer.stop()
+                }
+                else ->{
+                    mediaPlayer = MediaPlayer.create(this, R.raw.sonido4)
+                    delay(200)
+                    mediaPlayer.start()
+                    delay(250)
+                    mediaPlayer.stop()
+                }
+            }
+        }
 
         //muestra el array 1 en los botones
 
@@ -47,41 +78,41 @@ class MainActivity : AppCompatActivity() {
             for (color in array) {
                 when (color) {
                     1 -> {
-                        mediaPlayer = MediaPlayer.create(this, R.raw.sonido1)
                         rojo.setBackgroundColor(Color.parseColor("#710000"))
-                        mediaPlayer.start()
+                        val job = CoroutineScope(Dispatchers.Main).launch {
+                            reproducir(1)
+                        }
                         delay(500)
-                        mediaPlayer.stop()
                         rojo.setBackgroundColor(Color.parseColor("#ff0000"))
                         delay(250)
                         Log.d("color", "Destello rojo")
                     }
                     2 -> {
-                        mediaPlayer = MediaPlayer.create(this, R.raw.sonido2)
                         azul.setBackgroundColor(Color.parseColor("#047c71"))
-                        mediaPlayer.start()
+                        val job = CoroutineScope(Dispatchers.Main).launch {
+                            reproducir(2)
+                        }
                         delay(500)
-                        mediaPlayer.stop()
                         azul.setBackgroundColor(Color.parseColor("#00ffe8"))
                         delay(250)
                         Log.d("color", "Destello azul")
                     }
                     3 -> {
-                        mediaPlayer = MediaPlayer.create(this, R.raw.sonido3)
                         amarillo.setBackgroundColor(Color.parseColor("#a9ac04"))
-                        mediaPlayer.start()
+                        val job = CoroutineScope(Dispatchers.Main).launch {
+                            reproducir(3)
+                        }
                         delay(500)
-                        mediaPlayer.stop()
                         amarillo.setBackgroundColor(Color.parseColor("#ffec00"))
                         delay(250)
                         Log.d("color", "Destello amarillo")
                     }
                     else -> {
-                        mediaPlayer = MediaPlayer.create(this, R.raw.sonido4)
                         verde.setBackgroundColor(Color.parseColor("#075e00"))
-                        mediaPlayer.start()
+                        val job = CoroutineScope(Dispatchers.Main).launch {
+                            reproducir(4)
+                        }
                         delay(500)
-                        mediaPlayer.stop()
                         verde.setBackgroundColor(Color.parseColor("#13ff00"))
                         delay(250)
                         Log.d("color", "Destello verde")
@@ -134,7 +165,7 @@ class MainActivity : AppCompatActivity() {
             array.add(color)
         }
 
-        fun resultado(color: Int) {
+         fun resultado(color: Int) {
             anhadir(array2, color)
             nPusaciones++
             if (ronda == nPusaciones) {
@@ -145,30 +176,35 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+
+
         //asignamos valores a los colores -> rojo=1; azul=2; amarillo=3; verde=4
         rojo.setOnClickListener() {
             resultado(1)
-            mediaPlayer = MediaPlayer.create(this, R.raw.sonido1)
-            mediaPlayer.start()
-            mediaPlayer.stop()
+            val job = CoroutineScope(Dispatchers.Main).launch {
+                reproducir(1)
+            }
         }
         azul.setOnClickListener() {
             resultado(2)
-            mediaPlayer = MediaPlayer.create(this, R.raw.sonido1)
-            mediaPlayer.start()
-            mediaPlayer.stop()
+
+            val job = CoroutineScope(Dispatchers.Main).launch {
+                reproducir(2)
+            }
         }
         amarillo.setOnClickListener() {
             resultado(3)
-            mediaPlayer = MediaPlayer.create(this, R.raw.sonido1)
-            mediaPlayer.start()
-            mediaPlayer.stop()
+
+            val job = CoroutineScope(Dispatchers.Main).launch {
+                reproducir(3)
+            }
         }
         verde.setOnClickListener() {
             resultado(4)
-            mediaPlayer = MediaPlayer.create(this, R.raw.sonido1)
-            mediaPlayer.start()
-            mediaPlayer.stop()
+
+            val job = CoroutineScope(Dispatchers.Main).launch {
+                reproducir(4)
+            }
         }
 
 
